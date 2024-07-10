@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: inc_nginx
+    labels:
+      - com.yumamur.tag=inception
+    build: ./requirements/nginx
+    volumes:
+      - wordpress_vol:/var/www/html
+    networks:
+      - inception_network
+    ports:
+      - 443:443
+    restart: always
+  mariadb:
+    container_name: inc_wordpress-db
+    labels:
+      - com.yumamur.tag=inception
+    build: ./requirements/mariadb
+    env_file:
+      - ./.env
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+    networks:
+      - inception_network
+    restart: always
+  wordpress:
+    container_name: inc_wordpress
+    labels:
+      - com.yumamur.tag=inception
+    build: ./requirements/wordpress
+    env_file:
+      - ./.env
+    networks:
+      - inception_network
+    restart: always
+  redis:
+    container_name: inc_redis
+    labels:
+      - com.yumamur.tag=inception
+    build: ./requirements/bonus/redis
+    env_file:
+      - ./.env
+    networks:
+      - inception_network
+    ports:
+      - 6379:6379
+    restart: always
+
+volumes:
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ymamur/my_projects/inception_volumes/mysql
+      o: bind
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/ymamur/my_projects/inception_volumes/wordpress
+      o: bind
+
+networks:
+  inception_network:
+    driver: bridge
