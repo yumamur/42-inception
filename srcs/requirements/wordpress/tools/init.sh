@@ -17,6 +17,10 @@ sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
 sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 cp wp-config-sample.php wp-config.php
 
+wp core install --url=$DOMAIN_NAME --title=$DOMAIN_NAME --admin_user=$WP_USER --admin_password=$WP_PASSWORD --admin_email=$WP_EMAIL --allow-root && \
+wp config set WP_CACHE true --allow-root && \
+wp config set WP_REDIS_SELECTIVE_FLUSH true --allow-root && \
+wp config set WP_REDIS_DATABASE 0 --allow-root && \
 wp config set WP_REDIS_HOST redis --allow-root && \
 wp config set WP_REDIS_PORT 6379 --raw --allow-root && \
 wp config set WP_CACHE_KEY_SALT $DOMAIN_NAME --allow-root && \
