@@ -53,13 +53,13 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ymamur/my_projects/inception_volumes/mysql
+      device: $HOME/inception_volumes/mysql
       o: bind
   wordpress_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/ymamur/my_projects/inception_volumes/wordpress
+      device: $HOME/inception_volumes/wordpress
       o: bind
 
 networks:
