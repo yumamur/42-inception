@@ -13,3 +13,5 @@ COPY tools/init-edit.sh /tmp/init-edit.sh
 RUN  chmod +x /tmp/init-edit.sh
 
 ENTRYPOINT  ["/bin/bash", "/tmp/init-edit.sh"]
+
+CMD ["mysqld_safe"]
