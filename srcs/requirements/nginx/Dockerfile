@@ -2,7 +2,8 @@ FROM debian:bullseye
 
 EXPOSE 443
 
-RUN apt update && apt upgrade -y && apt install -y nginx openssl
+RUN apt update && apt upgrade -y
+RUN apt install -y nginx openssl
 
 RUN mkdir -p /etc/nginx/ssl /var/run/nginx /var/www/html
 RUN openssl req -x509 -nodes \

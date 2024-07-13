@@ -2,7 +2,8 @@ FROM debian:bullseye
 
 EXPOSE 3306
 
-RUN  apt update && apt upgrade -y && apt install -y mariadb-server
+RUN apt update && apt upgrade -y
+RUN apt install -y mariadb-server
 
 COPY ./conf/rm_anonymous_users.sql /docker-entrypoint-initdb.d/
 
