@@ -9,12 +9,12 @@
 #
 # If the same option is defined multiple times, the last one will apply.
 
-[mysqld]
+[mariadbd]
 
-user         	= mysql
-pid-file     	= /run/mysqld/mysqld.pid
-socket       	= /run/mysqld/mysqld.sock
-datadir      	= /var/lib/mysql
+user         	= mariadb
+pid-file     	= /run/mariadbd/mariadbd.pid
+socket       	= /run/mariadbd/mariadbd.sock
+datadir      	= /var/lib/mariadb
 basedir			= /usr
 skip-networking = false
 bind-address	= 0.0.0.0
